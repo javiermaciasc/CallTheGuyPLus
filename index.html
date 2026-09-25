@@ -2,28 +2,178 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>CallTheGuyPlus — Public</title>
-    <link rel="icon" href="favicon.ico">
+    <title>CallTheGuyPlus</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <style>
         body {
+            margin: 0;
             font-family: Arial, sans-serif;
             background: #f4f4f4;
-            text-align: center;
-            padding-top: 80px;
         }
-        h1 {
-            color: #333;
+        header {
+            background: #222;
+            color: #fff;
+            padding: 15px 20px;
         }
-        p {
+        header h1 {
+            margin: 0;
+            font-size: 22px;
+        }
+        main {
+            padding: 20px;
+        }
+        .section-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 15px;
+        }
+        .card {
+            background: #fff;
+            border-radius: 6px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .card h2 {
+            margin-top: 0;
+            font-size: 18px;
+        }
+        .card p {
+            margin: 6px 0 10px;
             color: #555;
+            font-size: 14px;
+        }
+        .card button {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            background: #007bff;
+            color: #fff;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .card button:hover {
+            background: #0056b3;
+        }
+        #app-log {
+            margin-top: 25px;
+            font-size: 13px;
+            color: #333;
+            background: #fff;
+            padding: 10px;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
     </style>
 </head>
 <body>
 
-    <h1>CallTheGuyPlus — Public Root</h1>
-    <p>Este archivo existe solo para servir como raíz pública del proyecto.</p>
-    <p>No contiene lógica, no redirige, no carga scripts.</p>
+<header>
+    <h1>CallTheGuyPlus — Panel principal</h1>
+</header>
+
+<main>
+    <p>Selecciona una sección para iniciar el flujo correspondiente.</p>
+
+    <div class="section-list">
+        <div class="card">
+            <h2>Perfiles (Cliente / Guy / Guy Plus)</h2>
+            <p>Creación y gestión de perfiles.</p>
+            <button onclick="loadModule('frontend/assets/profile.js')">Abrir perfiles</button>
+        </div>
+
+        <div class="card">
+            <h2>Pagos Cliente → Guy</h2>
+            <p>Registro y validación de pagos.</p>
+            <button onclick="loadModule('frontend/assets/payments.js')">Abrir pagos</button>
+        </div>
+
+        <div class="card">
+            <h2>Guy Plus (Vendors)</h2>
+            <p>Facturación, órdenes y beneficios.</p>
+            <button onclick="loadModule('frontend/assets/guyplus.js')">Abrir Guy Plus</button>
+        </div>
+
+        <div class="card">
+            <h2>Tiendas (Home Depot / Lowe’s)</h2>
+            <p>Conexión y órdenes de materiales.</p>
+            <button onclick="loadModule('frontend/assets/stores.js')">Abrir tiendas</button>
+        </div>
+
+        <div class="card">
+            <h2>Fotos iniciales + notas</h2>
+            <p>Subida y gestión de evidencia inicial.</p>
+            <button onclick="loadModule('frontend/assets/initial.js')">Abrir inicial</button>
+        </div>
+
+        <div class="card">
+            <h2>Matching Cliente ↔ Guy</h2>
+            <p>Idioma, cercanía y especialidad.</p>
+            <button onclick="loadModule('frontend/assets/matching.js')">Abrir matching</button>
+        </div>
+
+        <div class="card">
+            <h2>Propuesta del Guy</h2>
+            <p>Creación, guardado y visualización de propuestas.</p>
+            <button onclick="loadModule('frontend/assets/proposal.js')">Abrir propuesta</button>
+        </div>
+
+        <div class="card">
+            <h2>Aceptación con clave + PO</h2>
+            <p>Clave de aceptación y orden de compra.</p>
+            <button onclick="loadModule('frontend/assets/acceptance.js')">Abrir aceptación</button>
+        </div>
+
+        <div class="card">
+            <h2>Progreso del trabajo</h2>
+            <p>Inicio, avance y registro de progreso.</p>
+            <button onclick="loadModule('frontend/assets/progress.js')">Abrir progreso</button>
+        </div>
+
+        <div class="card">
+            <h2>Fotos finales</h2>
+            <p>Evidencia obligatoria al terminar el trabajo.</p>
+            <button onclick="loadModule('frontend/assets/final.js')">Abrir finales</button>
+        </div>
+
+        <div class="card">
+            <h2>Disputas</h2>
+            <p>Protección contra sabotaje del cliente.</p>
+            <button onclick="loadModule('frontend/assets/disputes.js')">Abrir disputas</button>
+        </div>
+
+        <div class="card">
+            <h2>Ratings (Cliente ↔ Guy)</h2>
+            <p>Calificaciones y evidencia PDF.</p>
+            <button onclick="loadModule('frontend/assets/ratings.js')">Abrir ratings</button>
+        </div>
+
+        <div class="card">
+            <h2>Factura basada en PO</h2>
+            <p>Generación y visualización de factura.</p>
+            <button onclick="loadModule('frontend/assets/invoice.js')">Abrir factura</button>
+        </div>
+    </div>
+
+    <div id="app-log">
+        <strong>Módulo cargado:</strong> ninguno todavía.
+    </div>
+</main>
+
+<script>
+    function loadModule(path) {
+        const log = document.getElementById('app-log');
+        log.innerHTML = '<strong>Módulo cargado:</strong> ' + path;
+
+        const existing = document.querySelector('script[data-dynamic="true"]');
+        if (existing) existing.remove();
+
+        const s = document.createElement('script');
+        s.src = path;
+        s.dataset.dynamic = 'true';
+        document.body.appendChild(s);
+    }
+</script>
 
 </body>
 </html>

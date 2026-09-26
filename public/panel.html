@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>CallTheGuyPlus — Panel</title>
+</head>
+<body>
+
+    <h1>Panel CallTheGuyPlus</h1>
+
+    <!-- BOTONES DEL PANEL -->
+    <button onclick="loadModule('profile')">Perfiles</button>
+    <button onclick="loadModule('payments')">Pagos</button>
+    <button onclick="loadModule('guyplus')">GuyPlus</button>
+
+    <!-- CONTENEDOR DONDE SE MUESTRA TODO -->
+    <div id="app"></div>
+
+    <!-- SCRIPT QUE CARGA LOS MÓDULOS -->
+    <script>
+        function loadModule(name) {
+            console.log("Cargando módulo:", name);
+            import(`../frontend/${name}.js`);
+        }
+    </script>
+
+</body>
+</html>

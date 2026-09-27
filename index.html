@@ -6,64 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f4f4f4;
-        }
-        header {
-            background: #222;
-            color: #fff;
-            padding: 15px 20px;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 22px;
-        }
-        main {
-            padding: 20px;
-        }
-        .section-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 15px;
-        }
-        .card {
-            background: #fff;
-            border-radius: 6px;
-            padding: 15px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .card h2 {
-            margin-top: 0;
-            font-size: 18px;
-        }
-        .card p {
-            margin: 6px 0 10px;
-            color: #555;
-            font-size: 14px;
-        }
-        .card button {
-            padding: 8px 12px;
-            border: none;
-            border-radius: 4px;
-            background: #007bff;
-            color: #fff;
-            cursor: pointer;
-            font-size: 14px;
-        }
-        .card button:hover {
-            background: #0056b3;
-        }
-        #app-log {
-            margin-top: 25px;
-            font-size: 13px;
-            color: #333;
-            background: #fff;
-            padding: 10px;
-            border-radius: 6px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
+        body { margin:0; font-family:Arial; background:#f4f4f4; }
+        header { background:#222; color:#fff; padding:15px 20px; }
+        main { padding:20px; }
+        .section-list { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:15px; }
+        .card { background:#fff; padding:15px; border-radius:6px; box-shadow:0 2px 4px rgba(0,0,0,0.1); }
+        .card button { background:#007bff; color:#fff; border:none; padding:8px 12px; border-radius:4px; cursor:pointer; }
+        #app-log { margin-top:25px; background:#fff; padding:10px; border-radius:6px; }
     </style>
 </head>
 <body>
@@ -79,28 +28,26 @@
 
         <div class="card">
             <h2>Perfiles</h2>
-            <p>Cliente / Guy / Guy Plus</p>
             <button onclick="loadModule('Frontend/assets/profile.js')">Abrir perfiles</button>
         </div>
 
         <div class="card">
-            <h2>Pagos Cliente → Guy</h2>
+            <h2>Pagos</h2>
             <button onclick="loadModule('Frontend/assets/payments.js')">Abrir pagos</button>
         </div>
 
         <div class="card">
-            <h2>Guy Plus (Vendors)</h2>
+            <h2>Guy Plus</h2>
             <button onclick="loadModule('Frontend/assets/guyplus.js')">Abrir Guy Plus</button>
         </div>
 
         <div class="card">
             <h2>Tiendas</h2>
-            <p>Home Depot / Lowe’s</p>
             <button onclick="loadModule('Frontend/assets/stores.js')">Abrir tiendas</button>
         </div>
 
         <div class="card">
-            <h2>Fotos iniciales + notas</h2>
+            <h2>Inicial</h2>
             <button onclick="loadModule('Frontend/assets/initial.js')">Abrir inicial</button>
         </div>
 
@@ -110,23 +57,23 @@
         </div>
 
         <div class="card">
-            <h2>Propuesta del Guy</h2>
+            <h2>Propuesta</h2>
             <button onclick="loadModule('Frontend/assets/proposal.js')">Abrir propuesta</button>
         </div>
 
         <div class="card">
-            <h2>Aceptación + PO</h2>
+            <h2>Aceptación</h2>
             <button onclick="loadModule('Frontend/assets/acceptance.js')">Abrir aceptación</button>
         </div>
 
         <div class="card">
-            <h2>Progreso del trabajo</h2>
+            <h2>Progreso</h2>
             <button onclick="loadModule('Frontend/assets/progress.js')">Abrir progreso</button>
         </div>
 
         <div class="card">
-            <h2>Fotos finales</h2>
-            <button onclick="loadModule('Frontend/assets/final.js')">Abrir finales</button>
+            <h2>Final</h2>
+            <button onclick="loadModule('Frontend/assets/final.js')">Abrir final</button>
         </div>
 
         <div class="card">
@@ -151,20 +98,17 @@
     </div>
 </main>
 
-<script>
+<script type="module">
     function loadModule(path) {
         const log = document.getElementById('app-log');
         log.innerHTML = '<strong>Módulo cargado:</strong> ' + path;
 
-        const existing = document.querySelector('script[data-dynamic="true"]');
-        if (existing) existing.remove();
-
-        const s = document.createElement('script');
-        s.src = path;
-        s.dataset.dynamic = 'true';
-        document.body.appendChild(s);
+        import(path)
+            .then(module => console.log("Módulo cargado:", module))
+            .catch(err => console.error("Error cargando módulo:", err));
     }
 </script>
 
 </body>
 </html>
+

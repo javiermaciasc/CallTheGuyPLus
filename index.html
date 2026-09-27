@@ -28,67 +28,67 @@
 
         <div class="card">
             <h2>Perfiles</h2>
-            <button onclick="loadModule('Frontend/assets/profile.js')">Abrir perfiles</button>
+            <button onclick="loadModule('CallTheGuyPLus/Frontend/assets/profile.js')">Abrir perfiles</button>
         </div>
 
         <div class="card">
             <h2>Pagos</h2>
-            <button onclick="loadModule('Frontend/assets/payments.js')">Abrir pagos</button>
+            <button onclick="loadModule('CallTheGuyPLus/Frontend/assets/payments.js')">Abrir pagos</button>
         </div>
 
         <div class="card">
             <h2>Guy Plus</h2>
-            <button onclick="loadModule('Frontend/assets/guyplus.js')">Abrir Guy Plus</button>
+            <button onclick="loadModule('CallTheGuyPLus/Frontend/assets/guyplus.js')">Abrir Guy Plus</button>
         </div>
 
         <div class="card">
             <h2>Tiendas</h2>
-            <button onclick="loadModule('Frontend/assets/stores.js')">Abrir tiendas</button>
+            <button onclick="loadModule('CallTheGuyPLus/Frontend/assets/stores.js')">Abrir tiendas</button>
         </div>
 
         <div class="card">
             <h2>Inicial</h2>
-            <button onclick="loadModule('Frontend/assets/initial.js')">Abrir inicial</button>
+            <button onclick="loadModule('CallTheGuyPLus/Frontend/assets/initial.js')">Abrir inicial</button>
         </div>
 
         <div class="card">
             <h2>Matching</h2>
-            <button onclick="loadModule('Frontend/assets/matching.js')">Abrir matching</button>
+            <button onclick="loadModule('CallTheGuyPLus/Frontend/assets/matching.js')">Abrir matching</button>
         </div>
 
         <div class="card">
             <h2>Propuesta</h2>
-            <button onclick="loadModule('Frontend/assets/proposal.js')">Abrir propuesta</button>
+            <button onclick="loadModule('CallTheGuyPLus/Frontend/assets/proposal.js')">Abrir propuesta</button>
         </div>
 
         <div class="card">
             <h2>Aceptación</h2>
-            <button onclick="loadModule('Frontend/assets/acceptance.js')">Abrir aceptación</button>
+            <button onclick="loadModule('CallTheGuyPLus/Frontend/assets/acceptance.js')">Abrir aceptación</button>
         </div>
 
         <div class="card">
             <h2>Progreso</h2>
-            <button onclick="loadModule('Frontend/assets/progress.js')">Abrir progreso</button>
+            <button onclick="loadModule('CallTheGuyPLus/Frontend/assets/progress.js')">Abrir progreso</button>
         </div>
 
         <div class="card">
             <h2>Final</h2>
-            <button onclick="loadModule('Frontend/assets/final.js')">Abrir final</button>
+            <button onclick="loadModule('CallTheGuyPLus/Frontend/assets/final.js')">Abrir final</button>
         </div>
 
         <div class="card">
             <h2>Disputas</h2>
-            <button onclick="loadModule('Frontend/assets/disputes.js')">Abrir disputas</button>
+            <button onclick="loadModule('CallTheGuyPLus/Frontend/assets/disputes.js')">Abrir disputas</button>
         </div>
 
         <div class="card">
             <h2>Ratings</h2>
-            <button onclick="loadModule('Frontend/assets/ratings.js')">Abrir ratings</button>
+            <button onclick="loadModule('CallTheGuyPLus/Frontend/assets/ratings.js')">Abrir ratings</button>
         </div>
 
         <div class="card">
             <h2>Factura</h2>
-            <button onclick="loadModule('Frontend/assets/invoice.js')">Abrir factura</button>
+            <button onclick="loadModule('CallTheGuyPLus/Frontend/assets/invoice.js')">Abrir factura</button>
         </div>
 
     </div>
@@ -103,7 +103,7 @@
         const log = document.getElementById('app-log');
         log.innerHTML = '<strong>Módulo cargado:</strong> ' + path;
 
-        import(path)
+        import(`https://javiermaciasc.github.io/${path}`)
             .then(module => console.log("Módulo cargado:", module))
             .catch(err => console.error("Error cargando módulo:", err));
     }
@@ -111,4 +111,3 @@
 
 </body>
 </html>
-

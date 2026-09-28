@@ -1,3 +1,5 @@
+console.log("perfil OK");
+
 // frontend/assets/profile.js
 
 /**
